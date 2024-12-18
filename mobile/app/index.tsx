@@ -1,33 +1,35 @@
-import { View, Text, Image, StyleSheet, Pressable } from 'react-native';
-import { colors } from '../constants/colors';
-import { Link } from 'expo-router';
+import { Text, View, Image, StyleSheet, Pressable } from "react-native";
+import { colors } from "../constants/colors";
+import { Link } from "expo-router";
 
 export default function Index(){
   return(
     <View style={styles.container}>
-      <Image source={require('../assets/images/logo.png')}/>
+      <Image
+        source={require('../assets/images/logo.png')}
+      />
 
       <Text style={styles.title}>
-        Dieta  
-        <Text style={{ color: colors.white}}>Inteligente</Text>
+        Dieta<Text style={{ color: colors.white }}>.Inteligente</Text>
       </Text>
 
       <Text style={styles.text}>
-        Crie sua dieta com inteligência artificial personalizada!
+        Crie sua dieta com nossa inteligência artificial de forma personalizada!
       </Text>
 
       <Link href="/step" asChild>
         <Pressable style={styles.button}>
-          <Text style={styles.buttonText}>Gerar Dieta</Text>
+          <Text style={styles.buttonText}>Gerar Dieta!</Text>
         </Pressable>
       </Link>
+
     </View>
   )
 }
 
 const styles = StyleSheet.create({
   container:{
-    backgroundColor: colors.background,
+    backgroundColor: colors.backgound,
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
@@ -36,33 +38,33 @@ const styles = StyleSheet.create({
   },
 
   title:{
-    fontSize: 34,
+    fontSize: 36,
     fontWeight: 'bold',
     color: colors.green
   },
 
   text:{
-    fontSize: 16,
+    fontSize: 18,
     color: colors.white,
     width: 240,
     textAlign: 'center',
-    marginTop: 8,
-    marginBottom: 8,
+    marginTop: 10,
+    marginBottom: 15,
   },
 
   button:{
     backgroundColor: colors.blue,
     width: '100%',
     height: 40,
-    borderRadius: 4,
+    borderRadius: 6,
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 20,
-  }, 
+    marginTop: 30,
+  },
 
   buttonText:{
     color: colors.white,
-    fontWeight: 'bold',
     fontSize: 16,
+    fontWeight: 'bold',
   }
 })
