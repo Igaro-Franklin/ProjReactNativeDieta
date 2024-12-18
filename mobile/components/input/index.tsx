@@ -30,7 +30,7 @@ export function Input({ name, control, placeholder, rules, error, keyboardType }
             )}
         />
 
-        {error && <Text style={styles.errorText}></Text>}
+        {error && <Text style={styles.errorText}>{error}</Text>}
 
     </View>
   );
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
 
     errorText:{
-        color: 'red',
+        color: colors.orange,
         marginTop: 4,
     }
 })
