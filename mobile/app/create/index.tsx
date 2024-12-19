@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { colors } from "../../constants/colors";
 import { Select } from "../../components/input/select";
+import { useDataStore } from "@/store/data";
+import { router } from "expo-router";
 
 
 
@@ -22,6 +24,8 @@ export default function Create() {
     const { control, handleSubmit, formState: { errors, isValid } } = useForm <FormData>({
         resolver: zodResolver(schema)
     })
+
+    const setPageTwo = useDataStore(state => state.setPageTwo);
 
     const genderOptions = [
         {label: "Masculino", value: "masculino"},
@@ -41,6 +45,16 @@ export default function Create() {
         { label: 'Hipertrofia + Definição', value: 'Hipertrofia e Definição' },
         { label: 'Definição', value: 'Definição' },
       ]
+
+    function HandleCreate(data: FormData){
+        setPageTwo({
+            gender: data.gender,
+            level: data.level,
+            objective: data.objective
+        });
+
+        router.push("/nutrition")
+    }
 
     return (
         <View style={styles.container}>
@@ -76,6 +90,10 @@ export default function Create() {
                     error={errors.objective?.message}
                     options={objectiveOptions}
                 />
+
+                <Pressable style={styles.button} onPress={handleSubmit(HandleCreate)}>
+                    <Text style={styles.buttonText}>Avançar</Text>
+                </Pressable>
             </ScrollView>
         </View>
   );
@@ -98,4 +116,18 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 6,
     },
+
+    button:{
+        backgroundColor: colors.blue,
+        height: 40,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+    },
+
+    buttonText:{
+        color: colors.white,
+        fontSize: 20,
+        fontWeight: 'bold'
+    }
 })
